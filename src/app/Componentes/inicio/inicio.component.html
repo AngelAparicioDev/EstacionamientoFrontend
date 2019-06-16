@@ -1,0 +1,16 @@
+<h1 style="text-align: center">BIENVENIDO</h1>
+<h2 style="text-align: center"> fecha </h2>
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <h4>Tabla De Precios Estacionamiento</h4>
+      <p-dataTable emptyMessage="lista vacía" [value]="precios" class="striped highlight black-text">
+        <p-column field="horaMoto" header="HORA MOTO"></p-column>
+        <p-column field="diaMoto" header="DIA MOTO"></p-column>
+        <p-column field="horaCarro" header="HORA CARRO"></p-column>
+        <p-column field="diaCarro" header="DIA CARRO"></p-column>
+        <p-column field="extraMoto" header="EXTRA MOTO CC MAYOR A 500"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</div>
