@@ -23,7 +23,7 @@ export class RegistrarTicketComponent implements OnInit {
     this.ticket = new Ticket;
     this.types.push({ label: 'CARRO', value: { id: 0, name: 'CARRO' } });
     this.types.push({ label: 'MOTO', value: { id: 1, name: 'MOTO' } });
-    this.type = { label: 'CARRO', value: { id: 0, name: 'CARRO' } };
+    this.type = { id: 0, name: 'CARRO' };
     this.todoForm = this.formBuilder.group({
       licensePlate: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20), Validators.pattern(/^[a-zA-Z-0-9]*$/)]],
       displacement: '',

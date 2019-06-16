@@ -6,12 +6,13 @@ import { RegistrarTicketComponent } from './Componentes/registrar-ticket/registr
 import { InicioComponent } from './Componentes/inicio/inicio.component';
 import { ListarTicketsActivosComponent } from './Componentes/listar-tickets-activos/listar-tickets-activos.component';
 import { MessageService } from 'primeng/api';
+import { MessageModule } from 'primeng/message';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextareaModule, PanelModule, DropdownModule } from 'primeng/primeng';
 import { TableModule } from 'primeng/table';
-
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,10 @@ import { TableModule } from 'primeng/table';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule, BrowserModule, InputTextareaModule, FormsModule, PanelModule, DropdownModule, TableModule
+    ReactiveFormsModule, BrowserModule, InputTextareaModule, FormsModule, PanelModule, DropdownModule, TableModule,
+    ToastModule ,MessageModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
