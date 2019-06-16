@@ -1,3 +1,29 @@
-<p>
-  listar-tickets-activos works!
-</p>
+<h2 style="text-align: center">Vehiculos en el estacionamiento</h2>
+<h4 style="text-align: center"> Hoy {{fecha | date: 'dd'}}/{{fecha | date:'MM'}}/{{fecha | date: 'yyyy'}} a las
+  {{fecha | date: 'HH'}}
+  : {{fecha | date: 'mm'}} </h4>
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <p-table [value]="tickets">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>PLACA</th>
+            <th>TIPO DE VEHICULO</th>
+            <th>FECHA DE ENTRADA</th>
+            <th>DAR SALIDA</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ticket>
+          <tr>
+            <td>{{ticket.licensePlate}}</td>
+            <td>{{ticket.typeVehicle}}</td>
+            <td>{{ticket.entry}}</td>
+            <td><button class="btn" (click)="registrarSalidaTicket(ticket.licensePlate)">
+                Salida</button></td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

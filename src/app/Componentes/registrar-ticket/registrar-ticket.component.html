@@ -1,3 +1,40 @@
-<p>
-  registrar-ticket works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col s2">
+    </div>
+    <div class="col s6">
+        <h3>Ingreso al estacionamiento:</h3>
+      <div class="card">
+        <div class="card-content">
+          <form [formGroup]="todoForm">
+            <div class="input-field col-s12">
+              <p>Tipo de vehiculo <strong style="color:Red;">*</strong></p>
+              <p-dropdown [options]="types" [(ngModel)]="type" formControlName="typeVehicle" (ngModelChange)="activarCilindraje()">
+              </p-dropdown>
+            </div>
+            <div class="input-field col-s12">
+              <p>Placa <strong style="color:Red;">*</strong></p>
+              <input type="text" [(ngModel)]="ticket.licensePlate" pInputText placeholder="Placa" class="form-control"
+                maxlength="9" (keyup)="validarTexto()" formControlName="licensePlate">
+            </div>
+            <div class="input-field col-s12" *ngIf="cilindraje">
+              <p>Cilindraje <strong style="color:Red;">*</strong></p>
+              <input type="text" [(ngModel)]="ticket.displacement" pInputText placeholder="Cilindraje"
+                class="form-control" maxlength="4" (keyup)="validarNumero()" formControlName="displacement">
+              <span style="color:Red;"
+                *ngIf="todoForm.controls['displacement'].touched && todoForm.controls['displacement'].errors?.minlength">se
+                requiere
+                minimo 2 numeros</span>
+            </div>
+            <div class="card-action">
+              <div class="input-field col-s12">
+                <button class="btn right" [disabled]="todoForm.invalid" (click)="registrarTicket()">Registrar
+                  Entrada</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

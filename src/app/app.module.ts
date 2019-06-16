@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core'; 
+import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistrarTicketComponent } from './Componentes/registrar-ticket/registrar-ticket.component';
@@ -9,7 +9,8 @@ import { MessageService } from 'primeng/api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TreeTable } from 'primeng/primeng'
+import { InputTextareaModule, PanelModule, DropdownModule } from 'primeng/primeng';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -25,8 +26,7 @@ import { TreeTable } from 'primeng/primeng'
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule,
-    TreeTable
+    ReactiveFormsModule, BrowserModule, InputTextareaModule, FormsModule, PanelModule, DropdownModule, TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

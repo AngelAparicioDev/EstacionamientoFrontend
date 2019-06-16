@@ -1,16 +1,37 @@
 <h1 style="text-align: center">BIENVENIDO</h1>
-<h2 style="text-align: center"> fecha </h2>
+<h4 style="text-align: center"> Hoy {{fecha | date: 'dd'}}/{{fecha | date:'MM'}}/{{fecha | date: 'yyyy'}} a las
+  {{fecha | date: 'HH'}}
+  : {{fecha | date: 'mm'}}</h4>
 <div class="container">
   <div class="row">
     <div class="col s12">
-      <h4>Tabla De Precios Estacionamiento</h4>
-      <p-dataTable emptyMessage="lista vacía" [value]="precios" class="striped highlight black-text">
-        <p-column field="horaMoto" header="HORA MOTO"></p-column>
-        <p-column field="diaMoto" header="DIA MOTO"></p-column>
-        <p-column field="horaCarro" header="HORA CARRO"></p-column>
-        <p-column field="diaCarro" header="DIA CARRO"></p-column>
-        <p-column field="extraMoto" header="EXTRA MOTO CC MAYOR A 500"></p-column>
-      </p-dataTable>
+      <h4 style="text-align: center">Tabla de precios del estacionamiento</h4>
+      <p> recuerde que nuestro estacionamiento funciona las 24 horas del dia los 7
+        dias de la semana, los vehiculos con placas iniciadas con la letra A solo podran ingresar los dias domingos y
+        lunes
+        , apartir de la novena hora sera cobrado el dia para cualquier vehiculo y las motos cuyo cilindraje exceda los
+        500 deberan pagar un extra
+      </p>
+      <p-table [value]="precios">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>HORA MOTO</th>
+            <th>DIA MOTO</th>
+            <th>HORA CARRO</th>
+            <th>DIA CARRO</th>
+            <th>EXTRA MOTO CC MAYOR A 500</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-precio>
+          <tr>
+            <td>$ {{precio.horaMoto}}</td>
+            <td>$ {{precio.diaMoto}}</td>
+            <td>$ {{precio.horaCarro}}</td>
+            <td>$ {{precio.diaCarro}}</td>
+            <td>$ {{precio.extraMoto}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
   </div>
 </div>
