@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EstacionamientoService } from '../../Servicios/estacionamiento.service';
 import { Ticket } from '../../Modelos/ticket'
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-listar-tickets-activos',
   templateUrl: './listar-tickets-activos.component.html',
@@ -9,7 +10,7 @@ import { Ticket } from '../../Modelos/ticket'
 export class ListarTicketsActivosComponent implements OnInit {
   fecha: Date;
   tickets: Ticket[];
-  constructor(private estacionamiento: EstacionamientoService) { }
+  constructor(private estacionamiento: EstacionamientoService,private toast:ToastrService) { }
 
   ngOnInit() {
     this.fecha = new Date();
@@ -19,15 +20,23 @@ export class ListarTicketsActivosComponent implements OnInit {
   listarTickets() {
     this.estacionamiento.listarTickets()
       .subscribe(res => {
-        console.log(res);
         this.tickets = res as Ticket[];
+      }, err => {
+        this.toast.error(err,"error al listar vehiculos:");
       });
   }
+
   registrarSalidaTicket(licensePlate) {
     this.estacionamiento.registrarSalida(licensePlate).subscribe(
       res => {
-        console.log(res);
-        this.listarTickets();
+        if(res){
+          this.toast.success("se registro la salida del vehiculo: " + licensePlate + ", con un costo de :" + res['value'],"Salida del estacionamiento:");
+          this.listarTickets();
+        }else{
+          this.toast.error("ocurrio un error al registrar salida");
+        }
+      }, err => {
+        this.toast.error(err,"Error al salir:");
       });
   }
 

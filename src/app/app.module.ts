@@ -10,9 +10,10 @@ import { MessageModule } from 'primeng/message';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InputTextareaModule, PanelModule, DropdownModule } from 'primeng/primeng';
+import { InputTextareaModule, PanelModule } from 'primeng/primeng';
 import { TableModule } from 'primeng/table';
-import { ToastModule } from 'primeng/toast';
+import { ToastrModule } from 'ngx-toastr';
+import { DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,10 @@ import { ToastModule } from 'primeng/toast';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule, BrowserModule, InputTextareaModule, FormsModule, PanelModule, DropdownModule, TableModule,
-    ToastModule ,MessageModule
+    MessageModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    })
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
