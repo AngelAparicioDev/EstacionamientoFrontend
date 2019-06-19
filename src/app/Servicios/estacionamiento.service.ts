@@ -3,25 +3,26 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { url } from '../Modelos/url'
+import { environment } from './../../environments/environment';
+
 import { Ticket } from '../Modelos/ticket'
 @Injectable({
   providedIn: 'root'
 })
 export class EstacionamientoService {
-  readonly URL_API = new url().url;
+
   constructor(private http: HttpClient) { }
 
   
   listarTickets(){
-    return this.http.get(this.URL_API).pipe(
+    return this.http.get(environment.apiUrl).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   registrarTickect(ticket:Ticket){
-    return this.http.post(this.URL_API,ticket).pipe(
+    return this.http.post(environment.apiUrl,ticket).pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -31,7 +32,7 @@ export class EstacionamientoService {
     var ticket = {
       "licensePlate" : licensePlate
     }
-    return this.http.put(this.URL_API,ticket).pipe(
+    return this.http.put(environment.apiUrl,ticket).pipe(
       retry(1),
       catchError(this.handleError)
     );
