@@ -39,6 +39,7 @@ export class EstacionamientoService {
 
   handleError(error) {
     let errorMessage = '';
+    console.log(error);
     errorMessage = error.error.message;
     return throwError(errorMessage);
   }
