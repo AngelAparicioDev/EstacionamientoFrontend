@@ -9,23 +9,26 @@
           <form [formGroup]="todoForm">
             <div class="input-field col-s12">
               <p>Tipo de vehiculo <strong style="color:Red;">*</strong></p>
-              <p-dropdown [options]="types" [(ngModel)]="type" formControlName="typeVehicle"
-                (ngModelChange)="activarCilindraje()">
-              </p-dropdown>
+              <select class="custom-select form-control-alternative" id="vehicleType" #typeVehicle
+                formControlName="typeVehicle"  style ="display: block">
+                <option selected value="">Seleccione</option>
+                <option *ngFor="let vehicle of types" [value]="vehicle.value.id">{{vehicle.value.name}}</option>
+              </select>
             </div>
             <div class="input-field col-s12">
               <p>Placa <strong style="color:Red;">*</strong></p>
-              <input type="text" [(ngModel)]="ticket.licensePlate" pInputText placeholder="Placa" class="form-control"
-                maxlength="9" (keyup)="validarTexto()" formControlName="licensePlate">
-           </div>
+              <input type="text" id="licencePlate" [(ngModel)]="ticket.licensePlate" pInputText placeholder="Placa"
+                class="form-control" maxlength="9" (keyup)="validarTexto()" formControlName="licensePlate">
+            </div>
             <div class="input-field col-s12" *ngIf="cilindraje">
               <p>Cilindraje <strong style="color:Red;">*</strong></p>
-              <input type="text" [(ngModel)]="ticket.displacement" pInputText placeholder="Cilindraje"
+              <input type="text" id="displacement" [(ngModel)]="ticket.displacement" pInputText placeholder="Cilindraje"
                 class="form-control" maxlength="4" (keyup)="validarNumero()" formControlName="displacement">
             </div>
             <div class="card-action">
               <div class="input-field col-s12">
-                <button class="btn right" [disabled]="todoForm.invalid" (click)="registrarTicket()">Registrar
+                <button class="btn right" id="btnRegister" [disabled]="todoForm.invalid"
+                  (click)="registrarTicket()">Registrar
                   Entrada</button>
               </div>
             </div>

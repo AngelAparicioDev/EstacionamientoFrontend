@@ -16,7 +16,7 @@ export class RegistrarTicketComponent implements OnInit {
   cilindraje: boolean;
   types = [];
   ticket: Ticket;
-  type;
+
   constructor(private confirmationService: ConfirmationService, private service: MessageService, private formBuilder: FormBuilder,
     private estacionamiento: EstacionamientoService,private toast:ToastrService) { }
 
@@ -24,8 +24,12 @@ export class RegistrarTicketComponent implements OnInit {
     this.ticket = new Ticket;
     this.types.push({ label: 'CARRO', value: { id: 0, name: 'CARRO' } });
     this.types.push({ label: 'MOTO', value: { id: 1, name: 'MOTO' } });
-    this.type = { id: 0, name: 'CARRO' };
     this.inicializarFormulario();
+    this.activarCilindraje();
+  }
+
+  get vehicleType() {
+    return this.todoForm.get('typeVehicle');
   }
 
   inicializarFormulario(){
@@ -37,13 +41,21 @@ export class RegistrarTicketComponent implements OnInit {
   }
 
   activarCilindraje() {
-    if (this.type.id == 1) {
-      this.cilindraje = true;
-      this.todoForm.get('displacement').setValidators([Validators.required]);
-    } else {
-      this.cilindraje = false;
-      this.todoForm.get('displacement').setValidators(null);
-    }
+    const typeVehicle = this.todoForm.get('typeVehicle');  
+    typeVehicle.valueChanges.subscribe(type => {
+      if (type === "0") {
+        this.cilindraje = false;
+        this.todoForm.get('displacement').setValidators(null);
+        this.ticket.typeVehicle = "CARRO";
+      }
+      if (type === "1") {
+        this.cilindraje = true;
+        this.ticket.typeVehicle = "MOTO";
+        this.todoForm.get('displacement').setValidators([Validators.required]);
+      }
+    
+    })
+
   }
 
   validarTexto() {
@@ -55,7 +67,6 @@ export class RegistrarTicketComponent implements OnInit {
   }
 
   registrarTicket() {
-    this.ticket.typeVehicle = this.type.name;
     this.estacionamiento.registrarTickect(this.ticket).subscribe(
       res => {
         if(res){
@@ -68,7 +79,6 @@ export class RegistrarTicketComponent implements OnInit {
   }
 
   limpiarFormulario(){
-    this.type = { id: 0, name: 'CARRO' };
     this.ticket = new Ticket();
     this.todoForm.get('displacement').setValidators(null);
   }
