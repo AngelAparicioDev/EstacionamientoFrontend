@@ -22,7 +22,7 @@
             </div>
             <div class="input-field col-s12" *ngIf="cilindraje">
               <p>Cilindraje <strong style="color:Red;">*</strong></p>
-              <input type="text" id="displacement" [(ngModel)]="ticket.displacement" pInputText placeholder="Cilindraje"
+              <input type="text" id="displacement" #displacement [(ngModel)]="ticket.displacement" pInputText placeholder="Cilindraje"
                 class="form-control" maxlength="4" (keyup)="validarNumero()" formControlName="displacement">
             </div>
             <div class="card-action">

@@ -8,10 +8,6 @@ export class RegisterPage {
         this.until = ExpectedConditions;
     }
 
-    //operaciones
-    async register(): Promise<void> {
-
-    }
 
     // navegando
     navigateTo(url = "Registrar"): Promise<void> {
@@ -72,14 +68,31 @@ export class RegisterPage {
 
     // metodos en espera de accion
 
-    async waitUnilToastMessageIsPresent(): Promise<void> {
+    async waitUntilToastMessageIsPresent(): Promise<void> {
         return await this.waitUntilIsPresent(this.getToastMessage());
+    }
+
+    async waitUntilDisplacementInput(): Promise<void> {
+        return await this.waitUntilIsPresent(this.getDisplacementImput());
+    }
+
+    async waitUntilDisplacementInputEnabled(): Promise<void> {
+        return await this.waitUntilIsEnabled(this.getDisplacementImput());
     }
 
     async waitUntilIsPresent(element: ElementFinder): Promise<void> {
         const id = await element.getId()
         return await browser.wait(
             this.until.presenceOf(element),
+            5000,
+            `Element ${id} taking too long to appear in the DOM`
+        );
+    }
+
+    async waitUntilIsEnabled(element: ElementFinder): Promise<void> {
+        const id = await element.getId()
+        return await browser.wait(
+            this.until.elementToBeClickable(element),
             5000,
             `Element ${id} taking too long to appear in the DOM`
         );
