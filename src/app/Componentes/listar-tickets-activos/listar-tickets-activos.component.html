@@ -16,10 +16,10 @@
         </ng-template>
         <ng-template pTemplate="body" let-ticket>
           <tr>
-            <td>{{ticket.licensePlate}}</td>
-            <td>{{ticket.typeVehicle}}</td>
-            <td>{{ticket.entry}}</td>
-            <td><button class="btn" (click)="registrarSalidaTicket(ticket.licensePlate)">
+            <td id="{{ticket.licensePlate}}" >{{ticket.licensePlate}}</td>
+            <td id="{{ticket.typeVehicle}}">{{ticket.typeVehicle}}</td>
+            <td id="{{ticket.entry}}">{{ticket.entry}}</td>
+            <td><button class="btn" id="btnExit{{ticket.licensePlate}}" (click)="registrarSalidaTicket(ticket.licensePlate)">
                 Salida</button></td>
           </tr>
         </ng-template>
