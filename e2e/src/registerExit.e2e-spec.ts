@@ -14,7 +14,7 @@ describe('Parking app exit ', () => {
     it('should should register exit car', async () => {
 
         // Arrange
-        const expectedMessage = "se registro la salida del vehiculo: URG-585, con un costo de :"+costo;
+        const expectedMessage = "se registro la salida del vehiculo: "+licensePlate+", con un costo de :"+costo;
 
         await exitPage.clickBtnRegisterButton(licensePlate);
         await exitPage.waitUntilToastMessageIsPresent();
